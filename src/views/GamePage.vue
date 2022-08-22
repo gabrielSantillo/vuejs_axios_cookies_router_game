@@ -13,17 +13,22 @@
 </template>
 
 <script>
+/* importing cookies */
 import cookies from "vue-cookies";
+/* importing the component ScoreBoard */
 import ScoreBoard from '@/components/ScoreBoard.vue';
+/* importing the component GameButton */
 import GameButton from '@/components/GameButton.vue';
 export default {
   components: { ScoreBoard, GameButton },
   data() {
     return {
+      /* setting the token value as null */
       token: null,
     };
   },
   mounted() {
+    /* setting the token to the value of the cookie `token` */
     this.token = cookies.get(`token`);
   },
 };
