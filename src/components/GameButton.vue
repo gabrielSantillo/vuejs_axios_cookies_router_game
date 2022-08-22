@@ -7,15 +7,23 @@
 <script>
 import axios from "axios";
     export default {
+        data() {
+            return {
+                win_counter: 0,
+                loss_counter: 0
+            }
+        },
         methods: {
           request_number() {
             axios.request({
                 url: `http://www.randomnumberapi.com/api/v1.0/randomnumber`
             }).then((response) => {
                 if(response[`data`][0] >= 50) {
-                    this.$root.$emit(`win_result`, `1`);
+                    this.win_counter += 1;
+                    this.$root.$emit(`win_result`, `${this.win_counter}`)
                 } else {
-                    this.$root.$emit(`loss_result`, `1`);
+                    this.loss_counter += 1;
+                    this.$root.$emit(`loss_result`, `${this.loss_counter}`);
                 }
                 
             }).catch((error) => {
