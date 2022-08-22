@@ -6,6 +6,7 @@
 
 <script>
 import axios from "axios";
+import cookies from "vue-cookies"
     export default {
         data() {
             return {
@@ -20,10 +21,12 @@ import axios from "axios";
             }).then((response) => {
                 if(response[`data`][0] >= 50) {
                     this.win_counter += 1;
-                    this.$root.$emit(`win_result`, `${this.win_counter}`)
+                    this.$root.$emit(`win_result`, `${this.win_counter}`);
+                    cookies.set(`win`, `${this.win_counter}`);
                 } else {
                     this.loss_counter += 1;
                     this.$root.$emit(`loss_result`, `${this.loss_counter}`);
+                    cookies.set(`loss`, `${this.loss_counter}`);
                 }
                 
             }).catch((error) => {
