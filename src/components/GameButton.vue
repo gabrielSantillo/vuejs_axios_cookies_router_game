@@ -20,13 +20,27 @@ import cookies from "vue-cookies"
                 url: `http://www.randomnumberapi.com/api/v1.0/randomnumber`
             }).then((response) => {
                 if(response[`data`][0] >= 50) {
-                    this.win_counter += 1;
-                    this.$root.$emit(`win_result`, `${this.win_counter}`);
-                    cookies.set(`win`, `${this.win_counter}`);
+                    if(cookies.get(`win`) === null) {
+                        this.win_counter += 1;
+                        this.$root.$emit(`win_result`, `${this.win_counter}`);
+                        cookies.set(`win`, `${this.win_counter}`);
+                    } else {
+                        let value = parseInt(cookies.get(`win`)) + 1
+                        this.$root.$emit(`win_result`, `${value}`);
+                        cookies.set(`win`, `${value}`);
+                    }
+                    
+                   
                 } else {
-                    this.loss_counter += 1;
-                    this.$root.$emit(`loss_result`, `${this.loss_counter}`);
-                    cookies.set(`loss`, `${this.loss_counter}`);
+                    if(cookies.get(`loss`) === null) {
+                        this.loss_counter += 1;
+                        this.$root.$emit(`loss_result`, `${this.loss_counter}`);
+                        cookies.set(`loss`, `${this.loss_counter}`);
+                    } else {
+                        let value = parseInt(cookies.get(`loss`)) + 1
+                        this.$root.$emit(`loss_result`, `${value}`);
+                        cookies.set(`loss`, `${value}`);
+                    }
                 }
                 
             }).catch((error) => {
