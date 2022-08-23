@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="token !== null">
-        <game-button></game-button>
-        <score-board></score-board>
+      <game-button></game-button>
+      <score-board></score-board>
     </div>
 
     <div v-else>
@@ -16,9 +16,9 @@
 /* importing cookies */
 import cookies from "vue-cookies";
 /* importing the component ScoreBoard */
-import ScoreBoard from '@/components/ScoreBoard.vue';
+import ScoreBoard from "@/components/ScoreBoard.vue";
 /* importing the component GameButton */
-import GameButton from '@/components/GameButton.vue';
+import GameButton from "@/components/GameButton.vue";
 export default {
   components: { ScoreBoard, GameButton },
   data() {

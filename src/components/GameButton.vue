@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="number" ref="wager_number">
+    <input type="number" ref="wager_number" />
     <button @click="request_number">Click me</button>
   </div>
 </template>
@@ -39,16 +39,18 @@ export default {
               /* set the cookie with this new value */
               cookies.set(`cookie_result`, `${this.points}`);
             } else {
-            /* if the cookie was already setted */
+              /* if the cookie was already setted */
               /* get this value from the cookie and add the new or the same value of the input, as the user wants */
-              let value = parseInt(cookies.get(`cookie_result`)) + this.$refs[`wager_number`][`valueAsNumber`];
+              let value =
+                parseInt(cookies.get(`cookie_result`)) +
+                this.$refs[`wager_number`][`valueAsNumber`];
               /* emmit the the result of the sum above */
               this.$root.$emit(`result`, `${value}`);
               /* set the cookie with this new value */
               cookies.set(`cookie_result`, `${value}`);
             }
           } else {
-          /* if the response from the API was less than 50 */
+            /* if the response from the API was less than 50 */
             /* if the cookie was not setted yet */
             if (cookies.get(`cookie_result`) === null) {
               /* subtract the value of the input to the variable points */
@@ -58,9 +60,11 @@ export default {
               /* set the cookie with this new value */
               cookies.set(`cookie_result`, `${this.points}`);
             } else {
-            /* if the cookie was already setted */
+              /* if the cookie was already setted */
               /* get this value from the cookie and subtract the new or the same value of the input, as the user wants */
-              let value = parseInt(cookies.get(`cookie_result`)) - this.$refs[`wager_number`][`valueAsNumber`];
+              let value =
+                parseInt(cookies.get(`cookie_result`)) -
+                this.$refs[`wager_number`][`valueAsNumber`];
               /* emmit the the result of the sum above */
               this.$root.$emit(`result`, `${value}`);
               /* set the cookie with this new value */
